@@ -10,10 +10,13 @@
   <div id="shopping-list" class="shopping-list">
     <div class="shopping-list__header">
       <h1 class="shopping-list__header__title">{{header.toLocaleUpperCase()}}</h1>
-      <button v-if="state === 'default'" class="shopping-list__header__add" @click="changeState('edit')">Add Item</button>
+      <!-- <button v-if="state === 'default'" class="shopping-list__header__add" @click="changeState('edit')">Add Item</button>
+      <button v-else class="shopping-list__header__cancel" @click="changeState('default')">Cancel</button> -->
+      <button v-if="isChangeState" class="shopping-list__header__add" @click="changeState('edit')">Add Item</button>
       <button v-else class="shopping-list__header__cancel" @click="changeState('default')">Cancel</button>
     </div>
-    <div v-if="state === 'edit'" class="shopping-list__add-item-form">
+    <!-- <div v-if="state === 'edit'" class="shopping-list__add-item-form"></div> -->
+    <div v-if="!isChangeState" class="shopping-list__add-item-form">
       <!-- <input v-model="newItem" type="text" placeholder="Add an item" v-on:keyup.enter="items.push(newItem)"> -->
       <input class="shopping-list__add-item-form__input" maxlength="200" v-model="newItem" type="text" placeholder="Add an item" @keyup.enter="saveItem">
       <p class="shopping-list__text">{{characterCount}}/200</p>
@@ -67,6 +70,9 @@
         },
         reversedItems() {
           return this.items.slice(0).reverse();
+        },
+        isChangeState: function() {
+          return this.state === 'default';
         }
       },
       methods: {
