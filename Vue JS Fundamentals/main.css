@@ -116,6 +116,8 @@ html, body {
   justify-content: center;
   align-items: center;
 
+  padding: 0 20px;
+
   width: 100%;
 }
 
@@ -126,7 +128,6 @@ html, body {
   align-items: center;
 
   padding: 0 10px;
-  margin: 0 20px;
 
   width: 400px;
   height: 40px;
@@ -202,9 +203,7 @@ html, body {
   justify-content: flex-start;
   align-items: flex-start;
 
-  padding: 5px 0;
-
-  width: 100%;
+  padding: 5px 10px;
 
   color: gray;
 }

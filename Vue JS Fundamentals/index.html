@@ -15,8 +15,8 @@
     </div>
     <div v-if="state === 'edit'" class="shopping-list__add-item-form">
       <!-- <input v-model="newItem" type="text" placeholder="Add an item" v-on:keyup.enter="items.push(newItem)"> -->
-      <input class="shopping-list__add-item-form__input" v-model="newItem" type="text" placeholder="Add an item" @keyup.enter="saveItem">
-      <!-- <p>{{characterCount}}/200</p> -->
+      <input class="shopping-list__add-item-form__input" maxlength="200" v-model="newItem" type="text" placeholder="Add an item" @keyup.enter="saveItem">
+      <p class="shopping-list__text">{{characterCount}}/200</p>
       <!-- <button class="btn btn-primary" v-on:click="items.push(newItem)">Save Item</button> -->
       <!-- <button class="btn btn-primary" v-bind:disabled="newItem.length === 0" @click="saveItem">Save Item</button> -->
       <button class="shopping-list__add-item-form__save" :disabled="newItem.length === 0" @click="saveItem">Save Item</button>
@@ -34,7 +34,7 @@
 </body>
   <script src="https://unpkg.com/vue"></script>
   <script>
-    var shoppingList = new Vue({
+    let shoppingList = new Vue({
       el: '#shopping-list',
       data: {
         state: 'default',
@@ -62,9 +62,9 @@
         ]
       },
       computed: {
-        // characterCount() {
-        //   return this.newItem.length;
-        // }
+        characterCount() {
+          return this.newItem.length;
+        },
         reversedItems() {
           return this.items.slice(0).reverse();
         }
