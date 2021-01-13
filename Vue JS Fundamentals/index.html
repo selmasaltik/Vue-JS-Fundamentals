@@ -7,29 +7,29 @@
   <link rel="stylesheet" href="main.css">
 </head>
 <body>
-  <div id="shopping-list">
-    <div class="header">
-      <h1>{{header.toLocaleUpperCase()}}</h1>
-      <button v-if="state === 'default'" class="btn btn-primary" @click="changeState('edit')">Add Item</button>
-      <button v-else class="btn btn-cancel" @click="changeState('default')">Cancel</button>
+  <div id="shopping-list" class="shopping-list">
+    <div class="shopping-list__header">
+      <h1 class="shopping-list__header__title">{{header.toLocaleUpperCase()}}</h1>
+      <button v-if="state === 'default'" class="shopping-list__header__add" @click="changeState('edit')">Add Item</button>
+      <button v-else class="shopping-list__header__cancel" @click="changeState('default')">Cancel</button>
     </div>
-    <div v-if="state === 'edit'" class="add-item-form">
+    <div v-if="state === 'edit'" class="shopping-list__add-item-form">
       <!-- <input v-model="newItem" type="text" placeholder="Add an item" v-on:keyup.enter="items.push(newItem)"> -->
-      <input v-model="newItem" type="text" placeholder="Add an item" @keyup.enter="saveItem">
+      <input class="shopping-list__add-item-form__input" v-model="newItem" type="text" placeholder="Add an item" @keyup.enter="saveItem">
       <!-- <p>{{characterCount}}/200</p> -->
       <!-- <button class="btn btn-primary" v-on:click="items.push(newItem)">Save Item</button> -->
       <!-- <button class="btn btn-primary" v-bind:disabled="newItem.length === 0" @click="saveItem">Save Item</button> -->
-      <button class="btn btn-primary" :disabled="newItem.length === 0" @click="saveItem">Save Item</button>
+      <button class="shopping-list__add-item-form__save" :disabled="newItem.length === 0" @click="saveItem">Save Item</button>
     </div>
     <!-- <a v-bind:href="newItem" target="_blank">Dynamic Link</a> -->
-    <ul>
+    <ul class="shopping-list__items">
       <!-- <li v-for="item in items">{{ item }}</li> -->
       <!-- <li v-for="item in items" :class="{strikeout: item.purchased}">{{ item.label }}</li> -->
       <!-- <li v-for="item in items" :class="[item.purchased ? 'strikeout' : '', item.highPriority ? 'priority': '']">{{ item.label }}</li> -->
       <!-- <li v-for="item in items" :class="{strikeout: item.purchased}" @click="togglePurchased(item)">{{ item.label }}</li> -->
-      <li v-for="item in reversedItems" :class="{strikeout: item.purchased}" @click="togglePurchased(item)">{{ item.label }}</li>
+      <li class="shopping-list__items__item" v-for="item in reversedItems" :class="{strikeout: item.purchased}" @click="togglePurchased(item)">📍 {{ item.label }}</li>
     </ul>
-    <p v-if="items.length === 0">Nice job! You've bought all your items.</p>
+    <p class="shopping-list__text" v-if="items.length === 0">Nice job! You've bought all your items. 🎉</p>
   </div>
 </body>
   <script src="https://unpkg.com/vue"></script>
