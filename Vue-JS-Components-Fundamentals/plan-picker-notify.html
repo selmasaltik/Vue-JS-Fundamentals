@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue.js Components Fundamentals</title>
+</head>
+<body>
+  <div id="app">
+    <div class="content">
+      <h1 class="content__title">Coffee Plans</h1>
+
+      <h2 class="content__subtitle">
+        We travel the world to source the very best single origin coffee for you
+      </h2>
+
+      <plan-picker></plan-picker>
+    </div>
+  </div>
+
+  <script type="text/x-template" id="plan-picker-template">
+     <div class="content__plans">
+        <!-- <plan v-for="plan in plans" :name="plan" @select="selectPlan"></plan> -->
+        <plan-picker-item v-for="plan in plans" :name="plan" @select="selectPlan" :selected-plan="selectedPlan"></plan-picker-item>
+      </div>
+  </script>
+
+  <script type="text/x-template" id="plan-picker-item-template">
+    <!-- <div @click="select" class="content__plans__plan" :class="{'active-plan': selected}"> -->
+    <div @click="select" class="content__plans__plan" :class="{'active-plan': isSelected}">
+      <div class="content__plans__description">
+        <span class="content__plans__title">
+          {{name}}
+        </span>
+      </div>
+    </div>
+  </script>
+
+  <script src="https://unpkg.com/vue"></script>
+  <script src="./plan-picker-notify.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue.js Slots Fundamentals</title>
+
+  <style>
+    .done {
+      color: green;
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+
+  <page-layout>
+    <template #header>
+      <h1>Here might be  page title</h1>
+    </template>
+
+    <p>A paragraphfor the main content.</p>
+    <p>And another one.</p>
+
+    <template #footer>
+      <p>Here's come contact info</p>
+    </template>
+  </page-layout>
+
+
+
+  <div id="app">
+    <h1>Vue.js Slots Fundamentals</h1>
+
+     <!-- Description üstü çizili değil-->
+    <todo-item>
+      Buy Bananas
+
+      <template #description>
+      <!-- <template v-slot:description> -->
+        <p>
+          Bananas are good for your health.
+        </p>
+      </template>
+
+      <template #button-text>
+        Make it rain
+      </template>
+    </todo-item>
+
+    <todo-item>
+      Eat Bananas
+
+      <template #description>
+        <p>
+          Bananas are good.
+        </p>
+      </template>
+    </todo-item>
+
+    <!-- Her ikisi için de üstü çizili -->
+    <!-- <todo-item>
+      Buy Bananas
+
+      <p>
+        Bananas are good for your health.
+      </p>
+    </todo-item> -->
+
+    <!-- <todo-item>
+      <p>Buy Bananas</p>
+      <button>hello</button>
+    </todo-item>
+    <todo-item>
+        Eat Bananas
+    </todo-item>
+    <todo-item>
+      Celebrate
+    </todo-item> -->
+  </div>
+
+  <script type="text/x-template" id="todo-item-template">
+    <div>
+      <input type="checkbox" v-model="completed">
+      <span :class="{done: completed}">
+        <slot></slot>
+      </span>
+      <slot name="description"></slot>
+      <button>
+        <!-- <slot name="button-text"></slot> -->
+        <slot name="button-text">Highlight</slot>
+      </button>
+    </div>
+  </script>
+
+  <script src="https://unpkg.com/vue"></script>
+  <script src="./component-slots.js"></script>
+</body>
+</html>
