@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/posts/whereIsIt", {data:[{}],fetch:{},mutations:[]});
